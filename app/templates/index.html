@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number Rec</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="/static/js/app.js"></script>
+    <link rel="stylesheet" href="/static/css/app.css">
+  </head>
+  <body onload="mam_draw_init();">
+    <div align="center">
+      <h1>Number Recognition</h1>
+      <div class="canvas" id="candiv">
+          <canvas id="can" width="280px" height="280px"></canvas>
+      </div>
+      <form action="/" method="post">
+          <button type="button" onClick="clearCan();" value="クリア" class="clear-button">クリア</button>
+          <button type="button" id="img" name="img" onClick="sendImage();" value="認識" class="send-button">認識</button>
+      </form>
+      <div id="answer"></div>
+    </div>
+  </body>
+</html>

@@ -20,7 +20,7 @@ def main():
     model = Net().to(device)
     model.load_state_dict(torch.load(model_path, map_location=device))
 
-    # 訓練
+    # 評価
     ope = ModelOperation(model, device)
     ope.test_model(test_loader)
 
