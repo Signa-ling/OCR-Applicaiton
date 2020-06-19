@@ -25,12 +25,19 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(128, 10)
         self.softmax = nn.Softmax(dim=1)
 
-    def forward(self, x):
+    # L2-constrained Softmax Loss
+    def l2_softmax(self, x, alpha):
+        l2 = torch.sqrt((x**2).sum())
+        x = alpha * (x / l2)
+        return x
+
+    def forward(self, x, alpha=16):
         x = self.pool1(self.relu1(self.conv1(x)))
         x = self.pool2(self.relu2(self.conv2(x)))
         x = self.dropout1(x)
         x = self.flatten(x)
         x = self.relu3(self.fc1(x))
+        x = self.l2_softmax(x, alpha)
         x = self.softmax(self.fc2(x))
 
         return x
